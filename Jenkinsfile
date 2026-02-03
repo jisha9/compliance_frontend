@@ -1,30 +1,31 @@
 pipeline {
-  agent any
+    agent any
 
-  environment {
-    IMAGE_NAME = "compliance-frontend"
-  }
-
-  stages {
-    stage('Checkout') {
-      steps {
-        checkout scm
-      }
+    environment {
+        IMAGE_NAME = "compliance-frontend"
     }
 
-    stage('Build Docker Image') {
-      steps {
-        sh 'docker build -t $IMAGE_NAME .'
-      }
-    }
+    stages {
 
-    stage('Run Frontend') {
-      steps {
-        sh '''
-          docker rm -f frontend || true
-          docker run -d -p 80:80 --name frontend $IMAGE_NAME
-        '''
-      }
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t $IMAGE_NAME .'
+            }
+        }
+
+        stage('Run Frontend') {
+            steps {
+                sh '''
+                    docker rm -f frontend || true
+                    docker run -d -p 80:80 --name frontend $IMAGE_NAME
+                '''
+            }
+        }
     }
-  }
 }
