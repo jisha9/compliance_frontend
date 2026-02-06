@@ -62,14 +62,14 @@ export default function Dashboard({ user, setUser }) {
 
   const previewFile = (docName) => {
     window.open(
-      `isha-doc-alb-604218210.us-west-1.elb.amazonaws.com:5000/download/${encodeURIComponent(docName)}`,
+      `backend:5000//download/${encodeURIComponent(docName)}`,
       '_blank'
     );
   };
 
   const downloadFile = (docName) => {
     window.open(
-      `isha-doc-alb-604218210.us-west-1.elb.amazonaws.com:5000/download-attachment/${encodeURIComponent(docName)}`,
+      `backend:5000//download-attachment/${encodeURIComponent(docName)}`,
       '_blank'
     );
   };
