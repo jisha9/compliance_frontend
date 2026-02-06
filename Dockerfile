@@ -9,6 +9,9 @@ RUN npm ci
 
 COPY . .
 
+# ⭐ FIX permission for ALL binaries
+RUN chmod -R 755 node_modules/.bin
+
 RUN npm run build
 
 
