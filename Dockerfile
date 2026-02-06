@@ -1,4 +1,4 @@
-# Build stage
+# ---------- Build Stage ----------
 FROM node:18-alpine AS build
 
 WORKDIR /app
@@ -9,12 +9,10 @@ RUN npm ci
 
 COPY . .
 
-RUN chmod +x node_modules/.bin/vite
-
 RUN npm run build
 
 
-# Production stage
+# ---------- Production Stage ----------
 FROM nginx:alpine
 
 COPY --from=build /app/dist /usr/share/nginx/html
